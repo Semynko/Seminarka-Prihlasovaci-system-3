@@ -47,6 +47,7 @@ namespace Autoskola
             {
                 throw new Exception("Nezadali jste všechny hodnoty");
             }
+            
             MessageBox.Show(datum);
             string edat = ZformatovaniDatumu();
             string[] t = edat.Split(' '); //rozdělí "8.12.2022 14:25" na "8.12.2022" & "14:25"

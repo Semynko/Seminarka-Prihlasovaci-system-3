@@ -30,11 +30,11 @@
         {
             this.BtnVytvoritJizdu = new System.Windows.Forms.Button();
             this.dtpJizda = new System.Windows.Forms.DateTimePicker();
-            this.txtbxStudent = new System.Windows.Forms.TextBox();
             this.cmbxRidic = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.lblStudent = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // BtnVytvoritJizdu
@@ -57,15 +57,6 @@
             this.dtpJizda.Name = "dtpJizda";
             this.dtpJizda.Size = new System.Drawing.Size(276, 31);
             this.dtpJizda.TabIndex = 3;
-            // 
-            // txtbxStudent
-            // 
-            this.txtbxStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.txtbxStudent.Location = new System.Drawing.Point(12, 119);
-            this.txtbxStudent.Margin = new System.Windows.Forms.Padding(2);
-            this.txtbxStudent.Name = "txtbxStudent";
-            this.txtbxStudent.Size = new System.Drawing.Size(276, 28);
-            this.txtbxStudent.TabIndex = 4;
             // 
             // cmbxRidic
             // 
@@ -111,16 +102,27 @@
             this.label3.TabIndex = 8;
             this.label3.Text = "Instruktor";
             // 
+            // lblStudent
+            // 
+            this.lblStudent.AutoSize = true;
+            this.lblStudent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblStudent.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblStudent.Location = new System.Drawing.Point(12, 117);
+            this.lblStudent.Name = "lblStudent";
+            this.lblStudent.Size = new System.Drawing.Size(65, 26);
+            this.lblStudent.TabIndex = 9;
+            this.lblStudent.Text = "jmeno";
+            // 
             // FormVytvoritJizdu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(312, 391);
+            this.Controls.Add(this.lblStudent);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbxRidic);
-            this.Controls.Add(this.txtbxStudent);
             this.Controls.Add(this.dtpJizda);
             this.Controls.Add(this.BtnVytvoritJizdu);
             this.Name = "FormVytvoritJizdu";
@@ -135,10 +137,10 @@
 
         private System.Windows.Forms.Button BtnVytvoritJizdu;
         private System.Windows.Forms.DateTimePicker dtpJizda;
-        private System.Windows.Forms.TextBox txtbxStudent;
         private System.Windows.Forms.ComboBox cmbxRidic;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.Label lblStudent;
     }
 }
