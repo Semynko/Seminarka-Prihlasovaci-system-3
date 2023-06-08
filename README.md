@@ -1,1 +1,2 @@
-# Seminarka-Prihlasovaci-system-3
+# Seminarka-Prihlasovaci-system
+Přihlašovací systém pro autoškolu
