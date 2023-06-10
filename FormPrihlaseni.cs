@@ -185,7 +185,7 @@ namespace Autoskola
 
             }
             
-        }
+        }//
 
         private void buttonZapomel_Click(object sender, EventArgs e)
         {
