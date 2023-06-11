@@ -22,6 +22,7 @@ namespace Autoskola
         public FormVytvoritJizdu()
         {
             InitializeComponent();
+            lblStudent.Text = FormPrihlaseni.Hstudent;
             using (StreamReader sr = new StreamReader("instruktor.txt", Encoding.UTF8))
             {
                 string[] poleInstruktori = sr.ReadToEnd().Split(new[] { Environment.NewLine }, StringSplitOptions.None);
@@ -40,14 +41,14 @@ namespace Autoskola
         {
             instrukt = cmbxRidic.Text;
             datum = dtpJizda.Value.ToString();
-            student = txtbxStudent.Text;
+            student = lblStudent.Text;
         }
 
         public void EditaceJizdyPrepis(DateTime datumACas, string student, string instruktor)
             //Funkce díky které se zapíší hodnoty vybrané jídzy co chce uživatel editovat
         {
             dtpJizda.Value = datumACas;
-            txtbxStudent.Text = student;
+            lblStudent.Text = student;
             cmbxRidic.Text = instruktor;
         }
         public void PrejmenovaniBtn(int i)
@@ -64,7 +65,7 @@ namespace Autoskola
 
         public string[] PrepsaniJizdy()
         {
-            string[] ret = {(dtpJizda.Value).ToString(), txtbxStudent.Text, cmbxRidic.Text };
+            string[] ret = {(dtpJizda.Value).ToString(), lblStudent.Text, cmbxRidic.Text };
             return ret;
         }
 

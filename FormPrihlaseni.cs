@@ -17,6 +17,7 @@ namespace Autoskola
     {
         public FormRegistrace reg = new FormRegistrace();
         public FormSystem sys = new FormSystem();
+        public static  string Hstudent = "";
        
         public FormPrihlaseni()
         {
@@ -172,6 +173,7 @@ namespace Autoskola
                 if (hash.PokusOHash(pomocnahes) == uz.Radhes[i].ToString() && pomocnajmen == uz.Radjmen[i].ToString())
                 {
                     this.Close();
+                    Hstudent = textBoxJmeno.Text;
                     sys.ShowDialog();
                     break;   
                 }
@@ -180,9 +182,7 @@ namespace Autoskola
                     MessageBox.Show("Špatné heslo!");
                     break;
                 }
-
             }
-            
         }
 
         private void buttonZapomel_Click(object sender, EventArgs e)
