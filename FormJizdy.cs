@@ -72,16 +72,15 @@ namespace Autoskola
                 int.Parse(radek[0].Split(' ')[1].Split(':')[0]), //hodina
                 int.Parse(radek[0].Split(' ')[1].Split(':')[1])  //minuta
             }; 
-            DateTime dt = new DateTime(pdt[2], pdt[0], pdt[1], pdt[3], pdt[4], 00); //vytvoří se DateTime proměná
+            DateTime dt = new DateTime(pdt[2], pdt[1], pdt[0], pdt[3], pdt[4], 00); //vytvoří se DateTime proměná
             FormVytvoritJizdu fvj = new FormVytvoritJizdu(); 
             if (student != FormPrihlaseni.Hstudent)
             {//podmínka: uživatel smí upravovat jen svoje jízdy
-                MessageBox.Show("K úpravě tohoto záznamu nemáte oprávnění", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("K úpravě tohoto záznamu nemáte oprávnění!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             fvj.EditaceJizdyPrepis(dt, student, instruktor); //vepsání záznamu do textboxu/comboboxu  pro editaci
             fvj.PrejmenovaniBtn(1); //přejmenuje tlačítko na Upravit jízdu
-
 
             if (fvj.ShowDialog() == DialogResult.OK) //otevře FormVytvoritJizdu
             {
@@ -100,7 +99,6 @@ namespace Autoskola
                 }
             }
             fvj.PrejmenovaniBtn(0); //přejmenuje tlačítko na zpátky na Vytvořit jízdu
-            
         }
 
 
@@ -110,9 +108,7 @@ namespace Autoskola
             if (lvSeznamJizd.SelectedItems.Count > 0)
             {
                 lvSeznamJizd.Items.Remove(lvSeznamJizd.SelectedItems[0]);
-                
                 ZapsatDoJizdyTXT();
-                
             }
         }
 
@@ -143,7 +139,9 @@ namespace Autoskola
             using (StreamWriter sw = new StreamWriter("jizdy.txt", false, Encoding.UTF8))
             {
                 sw.Write(text);
+                sw.Close();
             }
+            Jizda.VycistHodnotyZJizdy();
         }
         public static void ZapsaniDoListboxu(FormJizdy formJizdy)
         //Funkce sloužící pro zapsání hodnot z jizdy.txt to list boxu

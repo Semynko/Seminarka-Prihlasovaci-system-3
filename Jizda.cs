@@ -45,7 +45,7 @@ namespace Autoskola
         {
             if(instruktor == "")
             {
-                MessageBox.Show("Nevybrali jste žádného instruktora", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nevybrali jste žádného instruktora!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
             else
@@ -53,17 +53,38 @@ namespace Autoskola
                 string edat = ZformatovaniDatumu();
                 string[] t = edat.Split(' '); //rozdělí "8.12.2022 14:25" na "8.12.2022" & "14:25"
                 string[] d = t[1].Split(':'); //rozdělí "14:25" na "14" & "25"
-                for (int i = 0; i < FormJizdy.jizdalist.Length; i++)//projde všechny záznamy jídzdy
+                /*for (int i = 0; i < FormJizdy.jizdalist.Length; i++)//projde všechny záznamy jídzdy
                 {
-                    if (FormVytvoritJizdu.instrukt == instruktor)
+                }*/
+                string dat;
+                string cas;
+                string stu;
+                string ins;
+                foreach (string jiz in FormJizdy.jizdalist)
+                {
+                    dat = jiz.Split(';')[0].Split(' ')[0];  //datum (8.12.2022)
+                    cas = jiz.Split(';')[0].Split(' ')[1];  //cat (14:25)
+                    stu = jiz.Split(';')[1];                //student (Lubomír Volný)
+                    ins = jiz.Split(';')[2];                //instruktor (Dežo Krysa)
+                    if (student == stu)
                     {
-                        if (FormVytvoritJizdu.datum == datum)
+                        if (instruktor == ins)
                         {
-                            //if (FormVytvoritJizdu.datum)
-                            MessageBox.Show("prblm");
+                            if (datum.Split(' ')[0] == dat)
+                            {
+                                byte hodiny = byte.Parse(cas.Split(':')[0]); //hodiny (14)
+                                if (!((byte.Parse(datum.Split(' ')[1].Split(':')[0])+1) < hodiny &&
+                                    (byte.Parse(datum.Split(' ')[1].Split(':')[0]) - 1) > hodiny))
+                                {
+                                    MessageBox.Show("Ve vybranou dobu nelze vytvořit/upravit jízdu!", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                      
+                                    return false;
+                                }
+                            }
                         }
                     }
                 }
+
                 return true;
             }
         }
