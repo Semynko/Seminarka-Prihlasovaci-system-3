@@ -12,7 +12,7 @@ namespace Autoskola
 {
     internal class Jizda
     {
-        public static string radek;
+        //public static string radek;
         private string datum;
         //private string zformatovanyDatum;
         private string student;
@@ -41,41 +41,53 @@ namespace Autoskola
             }
         }
 
-        public void Podminky() //Podmínky _ funkce zjisťující zda uživatel neudělal chybu při zadávání hodnot
+        public bool Podminky() //Podmínky _ funkce zjisťující zda uživatel neudělal chybu při zadávání hodnot
         {
-            if((datum == null) || (student == "") || (instruktor == ""))
+            if(instruktor == "")
             {
-                throw new Exception("Nezadali jste všechny hodnoty");
+                MessageBox.Show("Nevybrali jste žádného instruktora", "Chyba", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
-            
-            MessageBox.Show(datum);
-            string edat = ZformatovaniDatumu();
-            string[] t = edat.Split(' '); //rozdělí "8.12.2022 14:25" na "8.12.2022" & "14:25"
-            string[] d = t[1].Split(':'); //rozdělí "14:25" na "14" & "25"
-            for (int i = 0; i < FormJizdy.jizdalist.Length; i++)//projde všechny záznamy jídzdy
+            else
             {
-                if (FormVytvoritJizdu.instrukt == instruktor)
+                string edat = ZformatovaniDatumu();
+                string[] t = edat.Split(' '); //rozdělí "8.12.2022 14:25" na "8.12.2022" & "14:25"
+                string[] d = t[1].Split(':'); //rozdělí "14:25" na "14" & "25"
+                for (int i = 0; i < FormJizdy.jizdalist.Length; i++)//projde všechny záznamy jídzdy
                 {
-                    //if ()
+                    if (FormVytvoritJizdu.instrukt == instruktor)
+                    {
+                        if (FormVytvoritJizdu.datum == datum)
+                        {
+                            //if (FormVytvoritJizdu.datum)
+                            MessageBox.Show("prblm");
+                        }
+                    }
                 }
+                return true;
             }
-
         }
 
-        public string EditaceJizdy()
+        public ListViewItem EditaceJizdy()
         {
             Jizda j = new Jizda(datum, student, instruktor);
             string zformaDat = j.ZformatovaniDatumu();
-            return $"{zformaDat};{student};{instruktor}";
+            ListViewItem item = new ListViewItem(zformaDat);
+            item.SubItems.Add(student);
+            if (student == FormPrihlaseni.Hstudent)
+            {
+                item.BackColor = Color.LightGreen;
+            }
+            item.SubItems.Add(instruktor);
+            return item;
         }
 
         public void ZapsatNovouJizdu()
         //Funkce na zapsání nově naplánované jízdy do souboru
         //a do listboxu (dodělat)
         {
-            string FDatum;
             Jizda j = new Jizda(datum, student, instruktor);
-            FDatum = j.ZformatovaniDatumu();
+            string FDatum = j.ZformatovaniDatumu();
             Jizda.VycistHodnotyZJizdy();
             using (StreamWriter sw = new StreamWriter("jizdy.txt", false, Encoding.UTF8))
             {

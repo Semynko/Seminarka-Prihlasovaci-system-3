@@ -182,10 +182,8 @@ namespace Autoskola
                     MessageBox.Show("Špatné heslo!");
                     break;
                 }
-
             }
-            
-        }//
+        }
 
         private void buttonZapomel_Click(object sender, EventArgs e)
         {
